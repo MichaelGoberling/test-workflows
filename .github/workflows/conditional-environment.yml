@@ -13,7 +13,8 @@ on:
 
 jobs:
   deploy:
-    environment: ${{ github.event_name == 'release' && 'Production' || github.event_name == 'push' && 'Stage' }}
+    # environment: ${{ github.event_name == 'release' && 'Production' || github.event_name == 'push' && 'Stage' }}
+    environment: Stage
     name: Deploy to ${{ github.event_name == 'release' && 'Production' || github.event_name == 'push' && 'Stage' }}
     if: github.repository == 'MichaelGoberling/test-workflows'
     runs-on: ${{ matrix.os }}
