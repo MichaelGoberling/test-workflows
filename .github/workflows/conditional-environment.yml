@@ -23,7 +23,6 @@ jobs:
         node-version: ['18']
         os: [ubuntu-latest]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Deploy
         run: |
           echo "Deploying to ${{ event.deployment.environment }}"
