@@ -1,0 +1,29 @@
+name: Test Conditional Environment
+
+defaults:
+  run:
+    shell: bash
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [released]
+
+jobs:
+  deploy:
+    environment: ${{ github.event_name == 'release' && 'production' || github.event_name == 'push' && 'stage' }}
+    name: Deploy to Production
+    if: github.repository == 'MichaelGoberling/test-workflows'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 1
+      matrix:
+        node-version: ['18']
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        run: |
+          echo "Deploying to ${{ event.deployment.environment }}"
