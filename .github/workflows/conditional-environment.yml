@@ -25,4 +25,4 @@ jobs:
         os: [ubuntu-latest]
     steps:
       - name: Deploy
-        run: echo "${{ env.NAME }}!"
+        run: echo "${{ vars.NAME }}!"
